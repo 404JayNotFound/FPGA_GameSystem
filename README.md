@@ -95,7 +95,7 @@ README.md
 
 - [Cathal O'Regan](https://github.com/oregancathal123) - VGA and clock generation
 
-- [Jamie O'Connor](https://github.com/404JayNotFound) - Input and flash memory 
+- [Jamie O'Connor](https://github.com/404JayNotFound) - [Input and flash memory](InputMemory_Subsystem) 
 
 - [Alan O'Connell](https://github.com/Alan64578) - System Controller and top-level integration
 
