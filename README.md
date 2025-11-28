@@ -1,130 +1,69 @@
-# FPGA GameSystem  
-Basys3 Hardware Platform for Simple 2D Games
+# FPGA GameSystem
 
-This project creates a modular hardware platform on the Basys3 FPGA that can support simple 2D games such as Tetris, Snake or Pong. The aim is to design and integrate the hardware subsystems needed for games, including VGA output, keypad and joystick input and flash memory support.
+**Basys3 Hardware Platform for Simple 2D Games**  
+
+A modular FPGA platform supporting simple 2D games such as **Tetris**, **Snake**, or **Pong**. Integrates VGA output, keypad & joystick input, and flash memory support.
+
+---
+
+## Table of Contents
+- [Hardware Used](#hardware-used)  
+- [Project Goals](#project-goals)  
+- [System Architecture](#system-architecture)  
+- [Weekly Progress](#weekly-progress)  
+- [Repository Structure](#repository-structure)  
+- [Tools Used](#tools-used)  
+- [Team Roles](#team-roles)  
 
 ---
 
-### Hardware Used
+## Hardware Used
 
-- Pmod KYPD (16-button keypad)  
-- Pmod JSTK2 (two-axis joystick with SPI interface)  
-- Pmod SF3 (32 MB serial flash memory)  
-- VGA output (25 MHz pixel clock generated from the Basys3 100 MHz clock)
 
----
+| Component   | Description |
+|------------|-------------|
+| Pmod KYPD  | 16-button keypad |
+| Pmod JSTK2 | Two-axis joystick with SPI |
+| Pmod SF3   | 32 MB serial flash memory |
+| VGA Output | 640×480 @ 60 Hz, 25 MHz pixel clock generated from Basys3 100 MHz clock |
 
 ---
 
 ## Project Goals
 
-- Build a working FPGA platform that multiple small games can run on  
-- Keep subsystems modular, testable and easy to extend  
-- Implement stable VGA timing and pixel output  
-- Handle keypad and joystick input  
+- Build a working FPGA platform capable of running multiple small games  
+- Maintain **modularity, testability, and extensibility**  
+- Implement **stable VGA timing and pixel output**  
+- Handle **keypad and joystick input** reliably  
 - Add flash storage for simple settings or save data  
-- Use a central System Controller to coordinate modules  
+- Coordinate modules via a central **System Controller**  
 
 ---
 
----
+## System Architecture
 
-# System Architecture
-
-### VGA Display Subsystem
-- Generates HSYNC and VSYNC timing  
-- Provides RGB pixel output  
-- Uses BRAM for tilemap and sprite graphics  
-- Targets 640×480 at 60 Hz  
-
----
-
-### Input Subsystem
-- Keypad scanning finite state machine  
-- Debouncing for stable keypress detection  
-- SPI interface for the joystick  
-- Handles buttons and onboard switches  
+| Subsystem | Description |
+|-----------|-------------|
+| **VGA Display** | HSYNC & VSYNC generation, RGB pixel output, BRAM for tilemaps & sprites, 640×480 @ 60 Hz |
+| **Input** | Keypad scanning FSM with debouncing, SPI joystick interface, onboard switches & buttons |
+| **Flash Memory** | SPI master interface for storing settings or save data |
+| **Game Core & System Controller** | Main FSM handling reset, menu, game & save states; updates VGA tilemap; communicates with flash & input subsystems |
+| **Clock, Reset & Top-Level Integration** | Generates 25 MHz pixel clock from 100 MHz board clock; distributes reset; connects all modules; defines `.xdc` pin assignments |
+ 
 
 ---
 
-### Flash Memory Subsystem
-- SPI master for the Pmod SF3 module  
-- Used for storing settings or simple save data  
+## Weekly Progress
+
+| Week | Focus | Achievements | Next Steps |
+|------|-------|--------------|------------|
+| 1 | [Planning & Initial Setup](Reports/Week1_HDL_Report.pdf) | High-level block design, subsystem roles assigned, researched PMOD interfaces and VGA timing | Prepare for subsystem development |
+| 2 | [Subsystem Development](Reports/ReportWeek2_HDL.pdf) | VGA timing verified, color test pattern displayed; keypad FSM implemented and simulated | Add joystick & flash memory subsystem |
+| 3 | Subsystem Integration | VGA + keypad integrated, project builds successfully, test patterns display correctly | Integrate flash memory, joystick, and Game Core logic |
 
 ---
 
-### Game Core and System Controller
-- Main finite state machine  
-- Handles reset, menu, game and save states  
-- Updates the VGA tilemap based on input  
-- Communicates with flash and input subsystems  
-
----
-
-### Clock, Reset and Top-Level Integration
-- Generates the 25 MHz pixel clock  
-- Distributes system reset  
-- Connects all subsystem modules  
-- Defines pin assignments through the .xdc file  
-
----
-
----
-
-# Weekly Progress
-
-## Week 1: Planning and Initial Setup
-- Reviewed the project brief  
-- Chose Tetris as a baseline target game  
-- Designed the high-level block architecture  
-- Assigned subsystem roles  
-- Researched PMOD interfaces and VGA timing requirements  
-- Planned inter-module communication  
-
----
-
-## Week 2: Subsystem Development
-
-### VGA Progress
-- Generated HSYNC and VSYNC timing  
-- Verified pixel clock generation  
-- Displayed a simple alternating colour test pattern  
-- Began planning tilemap BRAM usage  
-
-### Input Progress
-- Designed the keypad scanning FSM  
-- Implemented keypad module in Verilog  
-- Created a simulation testbench  
-- Researched joystick SPI protocol  
-
-### Integration Progress
-- Created the first version of `top.v`  
-- Started the `.xdc` constraint file  
-- Defined signal connections and interfaces  
-- Planned memory map structure  
-
----
-
-## Week 3: Subsystem Integration
-
-### Completed Work
-- Integrated VGA, keypad and System Controller  
-- Project builds and synthesizes without errors  
-- VGA test pattern displays correctly on a monitor  
-- Keypad input works at the top level  
-- Cleaned project directory for GitHub  
-
-### Next Steps
-- Add flash memory subsystem  
-- Add joystick subsystem  
-- Link Game Core logic to VGA tilemap  
-
----
-
----
-
-# Repository Structure
-
+## Repository Structure
 ```
 /src
     /vga
@@ -141,7 +80,7 @@ README.md
 
 ---
 
-# Tools Used
+## Tools Used
 
 - Vivado WebPACK  
 - Basys3 FPGA board  
@@ -152,8 +91,11 @@ README.md
 
 ---
 
-# Team Roles
+## Team Roles
 
-- Member A: VGA and clock generation  
-- Member B: Input and flash memory  
-- Member C: System Controller and top-level integration  
+- [Cathal O'Regan](https://github.com/oregancathal123) - VGA and clock generation
+
+- [Jamie O'Connor](https://github.com/404JayNotFound) - Input and flash memory 
+
+- [Alan O'Connell](https://github.com/Alan64578) - System Controller and top-level integration
+
