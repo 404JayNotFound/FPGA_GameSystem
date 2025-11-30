@@ -59,7 +59,7 @@ A modular FPGA platform supporting simple 2D games such as **Tetris**, **Snake**
 |------|-------|--------------|------------|
 | 1 | [Planning & Initial Setup](Reports/1_Week1_HDL_Report.pdf) | High-level block design, subsystem roles assigned, researched PMOD interfaces and VGA timing | Prepare for subsystem development |
 | 2 | [Subsystem Development](Reports/2_ReportWeek2_HDL.pdf) | VGA timing verified, color test pattern displayed; keypad FSM implemented and simulated | Add joystick & flash memory subsystem |
-| 3 | Subsystem Integration | VGA + keypad integrated, project builds successfully, test patterns display correctly | Integrate flash memory, joystick, and Game Core logic |
+| 3 | [Subsystem Integration](Reports/3_Week%203%20Project%20Report.pdf) | VGA + keypad integrated, project builds successfully, test patterns display correctly | Integrate flash memory, joystick, and Game Core logic |
 
 ---
 
